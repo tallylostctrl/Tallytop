@@ -24,7 +24,7 @@ TallytopLogger.log("read if cute :3");
 TallytopLogger.log("Tallytop v" + TallytopNative.app.getVersion());
 
 // TODO
-const customSettingsSections = (Vencord.Plugins.plugins.Settings as typeof SettingsPlugin).customSections;
+const customSettingsSections = (Tallycord.Plugins.plugins.Settings as typeof SettingsPlugin).customSections;
 
 customSettingsSections.push(() => ({
     section: "Tallytop",

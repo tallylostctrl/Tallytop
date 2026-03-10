@@ -10,6 +10,8 @@ import { IpcEvents } from "../shared/IpcEvents";
 import { TallytopNative } from "./TallytopNative";
 
 contextBridge.exposeInMainWorld("TallytopNative", TallytopNative);
+contextBridge.exposeInMainWorld("IS_TALLYTOP", true);
+contextBridge.exposeInMainWorld("IS_VESKTOP", true);
 
 // TODO: remove this legacy workaround once some time has passed
 const isSandboxed = typeof __dirname === "undefined";
