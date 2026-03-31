@@ -15,10 +15,12 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                os: [ubuntu-latest]
+                os: [ubuntu-latest, windows-latest]
                 include:
                     - os: ubuntu-latest
                       platform: linux
+                    - os: windows-latest
+                      platform: windows
 
         steps:
             - uses: actions/checkout@v4
@@ -39,6 +41,12 @@ jobs:
             - name: Run Electron Builder
               if: ${{ matrix.platform != 'mac' }}
               run: pnpm electron-builder --${{ matrix.platform }}
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Stewpit rename thingy
+              if: ${{ matrix.platform != 'mac' }}
+              run: pnpm rename
               env:
                   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
