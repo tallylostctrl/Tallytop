@@ -92,7 +92,7 @@ jobs:
                       --latest
                   fi
 
-                  for file in release-assets/*; do
+                  for file in release-assets/*/*; do
                     if [ -f "$file" ]; then
                       echo "Uploading $file..."
                       gh release upload "$TAG_NAME" "$file" --clobber
