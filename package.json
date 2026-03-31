@@ -91,27 +91,6 @@
             "maintainer": "tally+tallytop@riseup.net",
             "target": [
                 {
-                    "target": "deb",
-                    "arch": [
-                        "x64",
-                        "arm64"
-                    ]
-                },
-                {
-                    "target": "tar.gz",
-                    "arch": [
-                        "x64",
-                        "arm64"
-                    ]
-                },
-                {
-                    "target": "rpm",
-                    "arch": [
-                        "x64",
-                        "arm64"
-                    ]
-                },
-                {
                     "target": "AppImage",
                     "arch": [
                         "x64",

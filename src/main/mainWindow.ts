@@ -36,6 +36,7 @@ import { makeLinksOpenExternally } from "./utils/makeLinksOpenExternally";
 import { applyDeckKeyboardFix, askToApplySteamLayout, isDeckGameMode } from "./utils/steamOS";
 import { downloadVencordFiles, ensureVencordFiles, vencordSupportsSandboxing } from "./utils/tallycordLoader";
 import { TALLYCORD_FILES_DIR } from "./vencordFilesDir";
+import { STATIC_DIR } from "shared/paths";
 
 let isQuitting = false;
 
@@ -321,6 +322,7 @@ function buildBrowserWindowOptions(): BrowserWindowConstructorOptions {
     const options: BrowserWindowConstructorOptions = {
         show: Settings.store.enableSplashScreen === false && !CommandLine.values["start-minimized"],
         backgroundColor,
+        icon: join(STATIC_DIR, "icon.png"),
         webPreferences: {
             nodeIntegration: false,
             sandbox: vencordSupportsSandboxing(),

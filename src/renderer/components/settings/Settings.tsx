@@ -108,7 +108,7 @@ const SettingsOptions: Record<string, Array<BooleanSetting | SettingsComponent>>
         {
             key: "clickTrayToShowHide",
             title: "Hide/Show on tray click",
-            description: "Left clicking tray icon will toggle the tallytop window visibility.",
+            description: "Left clicking tray icon will toggle the Tallytop window visibility.",
             defaultValue: false
         },
         {
@@ -198,6 +198,6 @@ export default ErrorBoundary.wrap(
     },
     {
         message:
-            "Failed to render the Tallytop Settings tab. If this issue persists, try to right click the Tallytop tray icon, then click 'Repair Vencord'. And make sure your Tallytop is up to date."
+            "Failed to render the Tallytop Settings tab. If this issue persists, try to right click the Tallytop tray icon, then click 'Repair Tallycord'. And make sure your Tallytop is up to date."
     }
 );

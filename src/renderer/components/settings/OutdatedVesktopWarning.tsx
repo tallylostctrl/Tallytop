@@ -16,7 +16,7 @@ export function OutdatedVesktopWarning() {
 
     return (
         <Card variant="warning" className={cl("updater-card")}>
-            <HeadingTertiary>Your Vesktop is outdated!</HeadingTertiary>
+            <HeadingTertiary>Your Tallytop is outdated!</HeadingTertiary>
             <Paragraph>Staying up to date is important for security and stability.</Paragraph>
 
             <Button onClick={() => TallytopNative.app.openUpdater()} variant="secondary">
