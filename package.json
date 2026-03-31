@@ -1,6 +1,6 @@
 {
     "name": "tallytop",
-    "version": "1.6.5",
+    "version": "1.6.5-tally.1",
     "private": true,
     "description": "Tallytop is a custom Discord desktop app",
     "keywords": [],
@@ -12,7 +12,8 @@
         "build": "tsx scripts/build/build.mts",
         "build:dev": "pnpm build --dev",
         "buildLibVesktop": "pnpm -C packages/libvesktop install && pnpm -C packages/libvesktop run build",
-        "package": "pnpm build && electron-builder",
+        "package": "pnpm build && electron-builder && pnpm rename",
+        "rename": "tsx scripts/build/rename.mts",
         "package:dir": "pnpm build && electron-builder --dir",
         "lint": "eslint",
         "lint:fix": "pnpm lint --fix",
