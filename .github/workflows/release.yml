@@ -15,12 +15,10 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                os: [ubuntu-latest, windows-latest]
+                os: [ubuntu-latest]
                 include:
                     - os: ubuntu-latest
                       platform: linux
-                    - os: windows-latest
-                      platform: windows
 
         steps:
             - uses: actions/checkout@v4
@@ -61,11 +59,6 @@ jobs:
               with:
                   path: release-assets
 
-            - name: copy assets
-              run: |
-                  mkdir -p dist
-                  find release-assets -maxdepth 1 -type f -exec cp -t dist {} +
-
             - name: check version
               id: version_check
               run: |
@@ -82,13 +75,28 @@ jobs:
                   fi
                   echo "version $CURRENT"
 
-            - name: create github release and upload assets
+            - name: Upload each file in dist/ to the release
+              shell: bash
               env:
                   GH_TOKEN: ${{ github.token }}
               run: |
-                  TAG_NAME="v$(jq -r .version package.json)"
-                  echo "creating release $TAG_NAME..."
-                  gh release create "$TAG_NAME" dist/* \
-                    --verify-tag \
-                    --latest \
-                    --generate-notes
+                  VERSION=$(jq -r .version package.json)
+                  TAG_NAME="v$VERSION"
+
+                  echo "Using tag: $TAG_NAME"
+
+                  if ! gh release view "$TAG_NAME" > /dev/null 2>&1; then
+                    gh release create "$TAG_NAME" \
+                      --title "$TAG_NAME" \
+                      --generate-notes \
+                      --latest
+                  fi
+
+                  for file in dist/*; do
+                    if [ -f "$file" ]; then
+                      echo "Uploading $file..."
+                      gh release upload "$TAG_NAME" "$file" --clobber
+                    else
+                      echo "Skipping $file (not a file)"
+                    fi
+                  done
