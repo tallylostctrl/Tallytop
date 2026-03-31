@@ -61,11 +61,6 @@ jobs:
               with:
                   path: release-assets
 
-            - name: flatten assets
-              run: |
-                  mkdir -p dist
-                  find release-assets -type f -exec cp -t dist {} +
-
             - name: check version
               id: version_check
               run: |
