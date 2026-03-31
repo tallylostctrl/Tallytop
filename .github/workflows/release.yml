@@ -75,7 +75,7 @@ jobs:
                   fi
                   echo "version $CURRENT"
 
-            - name: Upload each file in dist/ to the release
+            - name: Upload each file in release-assets/ to the release
               shell: bash
               env:
                   GH_TOKEN: ${{ github.token }}
@@ -92,7 +92,7 @@ jobs:
                       --latest
                   fi
 
-                  for file in dist/*; do
+                  for file in release-assets/*; do
                     if [ -f "$file" ]; then
                       echo "Uploading $file..."
                       gh release upload "$TAG_NAME" "$file" --clobber
